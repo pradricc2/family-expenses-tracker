@@ -1,0 +1,63 @@
+<div class="card my-4">
+  <div class="card-header">
+    <h2>Entrate Mensili</h2>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="addIncome(newIncome)" class="mb-4">
+      <div class="mb-3">
+        <label for="description" class="form-label">Descrizione:</label>
+        <input type="text" id="description" [(ngModel)]="newIncome.description" name="description" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Importo:</label>
+        <input type="number" id="amount" [(ngModel)]="newIncome.amount" name="amount" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Data:</label>
+        <input type="date" id="date" [(ngModel)]="newIncome.date" name="date" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="type" class="form-label">Tipo:</label>
+        <select id="type" [(ngModel)]="newIncome.typeIncome" name="type" class="form-control" required>
+          <option [ngValue]="true">Entrata</option>
+          <option [ngValue]="false">Uscita</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Aggiungi</button>
+    </form>
+
+    <h3>Lista Entrate/Uscite</h3>
+    <ul class="list-group" *ngIf="incomes && incomes.length > 0">
+      <li class="list-group-item" *ngFor="let income of incomes">
+        {{ income?.description }} - {{ income?.amount }} € - {{ income?.date }} - {{ income?.typeIncome ? 'Entrata' : 'Uscita' }}
+      </li>
+    </ul>
+    <h3>Bilancio</h3>
+    <p class="fw-bold">Bilancio Totale: {{ calculateBalance() }} €</p>
+    <p *ngIf="incomes && incomes.length === 0" class="text-muted">Non ci sono entrate/uscite al momento.</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
